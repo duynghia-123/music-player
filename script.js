@@ -26,7 +26,7 @@ const app = {
   isRepeat: false,
   config: {},
   // (1/2) Uncomment the line below to use localStorage
-  // config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
+  config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
   songs: [
     {
       name: "Animals",
@@ -86,7 +86,7 @@ const app = {
   setConfig: function (key, value) {
     this.config[key] = value;
     // (2/2) Uncomment the line below to use localStorage
-    // localStorage.setItem(PlAYER_STORAGE_KEY, JSON.stringify(this.config));
+    localStorage.setItem(PlAYER_STORAGE_KEY, JSON.stringify(this.config));
   },
   render: function () {
     const htmls = this.songs.map((song, index) => {
@@ -109,7 +109,7 @@ const app = {
     });
     playlist.innerHTML = htmls.join("");
   },
-  defineProperties: function () { 
+  defineProperties: function () {
     Object.defineProperty(this, "currentSong", {
       get: function () {
         return this.songs[this.currentIndex];
@@ -218,7 +218,7 @@ const app = {
 
     // Xử lý lặp lại một song
     // Single-parallel repeat processing
-    repeatBtn.onclick = function (e) { 
+    repeatBtn.onclick = function (e) {
       _this.isRepeat = !_this.isRepeat;
       _this.setConfig("isRepeat", _this.isRepeat);
       repeatBtn.classList.toggle("active", _this.isRepeat);
